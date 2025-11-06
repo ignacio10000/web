@@ -735,6 +735,14 @@ function switchMenu(targetMenu) {
 
 function goBack() {
     if (navigationStack.length === 0) return;
+    
+    // Si estamos saliendo del modo offline, reiniciamos las puntuaciones
+    if (currentMenu && currentMenu.id === 'game-offline') {
+        offlineScore = { X: 0, O: 0 };
+        offlineScoreX.textContent = '0';
+        offlineScoreO.textContent = '0';
+    }
+    
     const previousMenu = navigationStack.pop();
     // Cierra el actual y muestra el anterior
     currentMenu.classList.remove('active');
